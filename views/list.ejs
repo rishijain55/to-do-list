@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="box" id="heading">
+      <% if (kindOfDay==="saturday"||kindOfDay==="sunday"){%>
+      <h1 style="color: purple"><%= kindOfDay %></h1>
+      <%} else{%>
+      <h1 style="color: white"><%= kindOfDay %></h1>
+      <%}%>
+    </div>
+
+    <div class="box">
+      <%for(var i = 0; i < itemList.length;i++){%>
+
+      <form method="POST" action="/delete/<%= kindOfDay %>">
+        <div class="item">
+          <input
+            type="checkbox"
+            name="<%=itemList[i].name%>"
+            onChange="this.form.submit()"
+          />
+          <p><%=itemList[i].name%></p>
+        </div>
+      </form>
+
+      <%}%>
+    </div>
+    <form
+      class="itemList box"
+      id="addItem"
+      method="POST"
+      action="/<%= kindOfDay %>"
+    >
+      <input
+        type="text"
+        name="todo1"
+        placeholder="New Item"
+        autocomplete="off"
+      />
+      <button type="submit">+</button>
+    </form>
+    <script src="" async defer></script>
+  </body>
+</html>
